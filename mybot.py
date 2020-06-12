@@ -16,12 +16,20 @@ class Mybot:
     def __init__(self):
         self.message
 
-    @myBot.message_handler(commands=['start', 'help'])
+    @myBot.message_handler(commands=['start'])
     def start(message):
         # photo = open('img/rpl1.png', 'rb')
         # myBot.send_photo(message.from_user.id, photo)
-        teks = "\n-- Test hello dari dmare bot -- "+"\n" \
-                        "hari ini tanggal "+str(waktusekarang)
+        teks = "\n-- hello dari dmare bot -- "+"\n"+"\n"\
+                "/help untuk fitur yang ada"
+
+        myBot.reply_to(message, teks)
+
+    @myBot.message_handler(commands=['help'])
+    def help(message):
+        teks = "/datasiswa : Untuk Melihat Seluruh Data Siswa RPL" + "\n" + "\n"\
+               "/rpl1 : Untuk Melihat Seluruh Kelas Siswa RPL 1" + "\n" + "\n"\
+               "/rpl2 : Untuk Melihat Seluruh Kelas Siswa RPL 2"
         myBot.reply_to(message, teks)
 
     @myBot.message_handler(commands=['datasiswa'])
@@ -55,7 +63,7 @@ class Mybot:
         jmldata = sql.rowcount
         rpl2data=''
         if(jmldata>0):
-            #print(data)
+            print(data)
             no=0
             for x in data:
                 no += 1
@@ -78,7 +86,7 @@ class Mybot:
         jmldata = sql.rowcount
         rpl1data=''
         if(jmldata>0):
-            #print(data)
+            print(data)
             no=0
             for x in data:
                 no += 1
